@@ -7,6 +7,7 @@
 #include <QProcess>
 
 #include "logviewer.h"
+#include "vpnhandler.h"
 
 namespace Ui {
     class MainWindowClass;
@@ -26,9 +27,11 @@ class MainWindow: public QMainWindow {
 	void onShowLog();
 	void onQuit();
 
-	void onReadError();
-	void onReadStdOut();
-	void onVpnDone(int, QProcess::ExitStatus);
+	void onIconActivated(QSystemTrayIcon::ActivationReason);
+
+	void onVPNStateChanged(VPNHandler::State);
+	void onVPNNeedsAuth();
+	void onVPNLogData(QString);
 
     private:
 	void createActions();
@@ -39,18 +42,14 @@ class MainWindow: public QMainWindow {
 	QMenu *m_Menu;
 	QMenu *m_ProfileMenu;
 
-	QProcess *m_Proc;
-
 	QActionGroup *m_ProfGroup;
-
 	QAction *m_DisconnectAct;
 	QAction *m_OpenConfAct;
 	QAction *m_ShowLogAct;
 	QAction *m_QuitAct;
 
-	QString m_CachePwd;
-
 	LogViewer *m_LogViewer;
+	VPNHandler *m_VPN;
 };
 
 #endif // MAINWINDOW_H

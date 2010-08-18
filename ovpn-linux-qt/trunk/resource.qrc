@@ -3,5 +3,6 @@
         <file>icons/connect_no.png</file>
         <file>icons/connect_ok.png</file>
         <file>icons/in_progress.png</file>
+        <file>icons/logo.png</file>
     </qresource>
 </RCC>
